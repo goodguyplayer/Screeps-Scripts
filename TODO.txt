@@ -1,0 +1,11 @@
+creeps.drones.:
+	- Fix it. Make it so it follows the following.:
+		- Set energy counter to true or false (if filled)
+		- If energy counter is true.:
+			- Look for buildings to build
+			- If no building requires building, move energy to spawn.
+
+		- Else, mine.
+
+creeps.meat.: 
+	- Create routine for meat.

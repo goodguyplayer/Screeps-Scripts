@@ -7,6 +7,21 @@
  * mod.thing == 'a thing'; // true
  */
 
-module.exports = {
+// TODO.: Create creep that targets enemy creeps in spawn and chase them
 
+var rolesMeat = {
+    /** @param {Creep} creep **/
+    run: function(creep){
+        const target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if(target) {
+            if(creep.attack(target) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target);
+            } else {
+                creep.attack(target);
+            }
+        }
+    }
 };
+
+
+module.exports = rolesMeat;

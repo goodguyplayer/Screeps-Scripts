@@ -1,7 +1,7 @@
 var rolesDrones = require('roles.drones');
-var creepsDrones = require('creeps.drones');
 var rolesBuilders = require('roles.builders');
 var rolesUpgraders = require('roles.upgraders');
+var rolesMeat = require('roles.meat');
 var creepsCreator = require('creeps.creator');
 
 module.exports.loop = function () {
@@ -28,10 +28,11 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
 
+    // Run creeps
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'drones') {
-            creepsDrones.run(creep);
+            rolesDrones.run(creep);
         }
         if(creep.memory.role == 'upgraders') {
             rolesUpgraders.run(creep);
@@ -39,7 +40,11 @@ module.exports.loop = function () {
         if(creep.memory.role == 'builders') {
             creepsDrones.run(creep);
         }
+        if(creep.memory.role == 'meat'){
+            rolesMeat.run(creep);
+        }
     }
     
-    
+    console.log('Amount of CPU that you can spend on a current tick:', Game.cpu.tickLimit);   
+    console.log('Amount of CPU that was used:', Game.cpu.getUsed());
 }
